@@ -53,10 +53,15 @@ def search_uncopylocked(keyword, start_row, max_rows):
         print(Fore.RED + f"[ERROR] Failed to search for games: {e}")
         return []
 
-keyword = input("Enter a keyword to search for uncopylocked games (type 'exit' to quit): ")
-while keyword != 'exit':
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-        for start_row in range(0, 9800, 200):
-            executor.submit(search_uncopylocked, keyword, start_row, 200)
+# Instead of asking for user input, we use the provided game URL directly.
+keyword = "https://www.roblox.com/games/142823291/Murder-Mystery-2"
+is_uncopylocked(keyword)
 
-    keyword = input("Enter a keyword to search for uncopylocked games (type 'exit' to quit): ")
+# Uncomment below if you want to search with keywords again.
+# keyword = input("Enter a keyword to search for uncopylocked games (type 'exit' to quit): ")
+# while keyword != 'exit':
+#     with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+#         for start_row in range(0, 9800, 200):
+#             executor.submit(search_uncopylocked, keyword, start_row, 200)
+# 
+#     keyword = input("Enter a keyword to search for uncopylocked games (type 'exit' to quit): ")
